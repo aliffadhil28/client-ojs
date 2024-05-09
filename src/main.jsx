@@ -6,7 +6,6 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Code from "../code/Code.jsx";
 import Home from "../home/Home.jsx";
 import Login from "../login/Login.jsx";
-import Register from "./pages/Register.jsx";
 import Problem from "../dashboard/problems/Problems.jsx";
 import ProblemDetail from "../dashboard/problems/ProblemDetails.jsx";
 import AddProblem from "../dashboard/problems/AddProblem.jsx";
