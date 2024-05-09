@@ -19,6 +19,7 @@ import DashboardLayout from "./assets/layouts/DashboardLayout.jsx";
 import Solutions from "./pages/admin/Solutions.jsx";
 import Profile from "./pages/Profile.jsx";
 import Users from "./pages/admin/Users.jsx";
+import App from "./App.jsx";
 
 function AuthLayout() {
   return (
@@ -126,13 +127,13 @@ const router = createBrowserRouter([
         },
       },
       {
-        path : '/dashboard/users',
-        element : <Users />,
+        path: "/dashboard/users",
+        element: <Users />,
         loader: async () => {
           let data = await loaderGet("http://localhost:8001/users");
           return data;
         },
-      }
+      },
     ],
   },
   {
@@ -152,6 +153,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <App>
+      <RouterProvider router={router} />
+    </App>
   </React.StrictMode>
 );

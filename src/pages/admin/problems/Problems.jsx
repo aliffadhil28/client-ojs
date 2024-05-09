@@ -63,18 +63,8 @@ function Problems() {
                   />
                 </Table.Cell>
                 <Table.Cell>
-                  <a
-                    href={`/dashboard/problems/${val.id}`}
-                    className="font-medium hover:no-underline text-cyan-600 dark:text-cyan-500 me-2"
-                  >
-                    Detail
-                  </a>
-                  <a
-                    href={`/dashboard/solutions/${val.id}`}
-                    className="font-medium hover:no-underline text-green-600 dark:text-green-500"
-                  >
-                    Submitions
-                  </a>
+                    <Link to={`/dashboard/problems/${val.id}`} className="font-medium hover:no-underline text-cyan-600 dark:text-cyan-500 me-2">Detail</Link>
+                    <Link to={`/dashboard/solutions/${val.id}`} className="font-medium hover:no-underline text-green-600 dark:text-green-500">Submissions</Link>
                 </Table.Cell>
               </Table.Row>
             );
