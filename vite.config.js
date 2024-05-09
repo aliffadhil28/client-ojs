@@ -9,7 +9,7 @@ const outDir = resolve(__dirname,'dist')
 // https://vitejs.dev/config/
 export default defineConfig({
   // base: "/",
-  // base: "/client-ojs",
+  base: "/client-ojs/",
   plugins: [react()],
   // server: {
   //   host: "localhost",
