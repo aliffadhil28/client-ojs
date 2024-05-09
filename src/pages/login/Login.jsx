@@ -1,5 +1,5 @@
 import React, { useRef, useContext } from "react";
-import um from "../assets/images/um.png";
+import um from "../../assets/images/um.png";
 import axios from 'axios'
 import "../../assets/styles/login.css";
 import { TextInput, FloatingLabel } from "flowbite-react";

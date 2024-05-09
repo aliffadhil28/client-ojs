@@ -6,7 +6,7 @@ import { IconContext } from "react-icons";
 import moment from "moment";
 import { levelHelper } from "../../../../helpers/helper.js";
 import ReactPaginate from "react-paginate";
-import '../../../assets/styles/dashboard/problem.css';
+import '../../../../assets/styles/dashboard/problem.css';
 import { buttonThemes } from "../../../../assets/themes/buttonThemes.js";
 
 function Problems() {
