@@ -8,11 +8,11 @@ const outDir = resolve(__dirname,'dist')
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "client-ojs/",
+  base: "/client-ojs/",
   plugins: [react()],
   server: {
     host: "127.0.0.1",
-    port: 3000,
+    port: 8000,
   },
   build: {
     outDir: outDir,

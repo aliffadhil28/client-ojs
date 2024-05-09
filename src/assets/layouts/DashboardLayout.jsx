@@ -2,8 +2,9 @@
 import React, { useContext, useState } from "react";
 import { Sidebar, Button } from "flowbite-react";
 import { HiChartPie } from "react-icons/hi";
-import { FaFileCode, FaCode , FaDoorOpen ,FaUser} from "react-icons/fa";
+import { FaHome, FaCode , FaDoorOpen ,FaUser} from "react-icons/fa";
 import { sidebarTheme } from "../themes/sidebarTheme.js";
+import { Link } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import { useNavigate, useLocation } from "react-router-dom";
 import { ErrorPage } from "../components/ErrorPage";
@@ -22,7 +23,6 @@ const DashboardLayout = ({ children }) => {
   }
   function logout() {
     localStorage.removeItem("userProfile");
-    window.location.href = "/login";
   }
   return (
     <div>
@@ -36,34 +36,30 @@ const DashboardLayout = ({ children }) => {
           >
             <Sidebar.Items>
               <Sidebar.ItemGroup>
-                {/* <Sidebar.Item
-                  href="/dashboard"
-                  {...(curloc === "/dashboard" ? { active: true } : {})}
-                  icon={HiChartPie}
-                >
-                  Dashboard
-                </Sidebar.Item> */}
                 <Sidebar.Item
-                  href="/dashboard/problems"
+                  icon={FaHome}
+                >
+                  <Link to="/">Home</Link>
+                </Sidebar.Item>
+                <Sidebar.Item
                   {...(curloc === "/dashboard/problems"
                     ? { active: true }
                     : {})}
                   icon={FaCode}
                 >
-                  Problems
+                  <Link to="/">Problem</Link>
                 </Sidebar.Item>
                 <Sidebar.Item
-                  href="/dashboard/users"
                   {...(curloc === "/dashboard/users"
                     ? { active: true }
                     : {})}
                   icon={FaUser}
                 >
-                  User
+                  <Link to="/">User</Link>
                 </Sidebar.Item>
                 <Sidebar.Item href="#" icon={FaDoorOpen}>
                   <Button size="xs" className="bg-gray-5 w-full justify-start ms-0 hover:bg-gray-50" onClick={logout} color="white">
-                    Logout
+                  <Link to="/login">Logout</Link>
                   </Button>
                 </Sidebar.Item>
               </Sidebar.ItemGroup>
