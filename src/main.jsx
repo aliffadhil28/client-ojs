@@ -23,29 +23,35 @@ import App from "./App.jsx";
 
 function AuthLayout() {
   return (
-    <AuthContextProvider>
-      <Outlet />
-    </AuthContextProvider>
+    <App>
+      <AuthContextProvider>
+        <Outlet />
+      </AuthContextProvider>
+    </App>
   );
 }
 
 function DefaultLayout() {
   return (
-    <AuthContextProvider>
-      <HomeLayout>
-        <Outlet />
-      </HomeLayout>
-    </AuthContextProvider>
+    <App>
+      <AuthContextProvider>
+        <HomeLayout>
+          <Outlet />
+        </HomeLayout>
+      </AuthContextProvider>
+    </App>
   );
 }
 
 export function AdminLayout() {
   return (
-    <AuthContextProvider>
-      <DashboardLayout>
-        <Outlet />
-      </DashboardLayout>
-    </AuthContextProvider>
+    <App>
+      <AuthContextProvider>
+        <DashboardLayout>
+          <Outlet />
+        </DashboardLayout>
+      </AuthContextProvider>
+    </App>
   );
 }
 const router = createBrowserRouter([
@@ -153,8 +159,6 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <App>
-      <RouterProvider router={router} />
-    </App>
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
