@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
 import { Card, Accordion, Table, Badge } from "flowbite-react";
-import AuthContext from "../../assets/context/AuthContext";
+import AuthContext from "../assets/context/AuthContext"
 
 const Profile = () => {
   document.title = "Profile";
