@@ -5,12 +5,8 @@ import viteLogo from "/vite.svg";
 import { Button } from "flowbite-react";
 import { Outlet } from "react-router-dom";
 
-const App = () => {
-  return (
-    <>
-      <Outlet></Outlet>
-    </>
-  );
-};
+const App = ({ children }) => {
+  return <>{children}</>;
+}
 
 export default App;
