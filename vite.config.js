@@ -8,29 +8,29 @@ const outDir = resolve(__dirname,'dist')
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "/",
+  // base: "/",
   // base: "/client-ojs",
   plugins: [react()],
-  server: {
-    host: "localhost",
-    // port: 8000,
-    port: 4173,
-  },
-  build: {
-    // outDir: outDir,
-    // emptyOutDir: true,
-    rollupOptions: {
-      input: {
-        main: resolve(__dirname, 'index.html'),
-        login: resolve(__dirname, './login/index.html'),
-        code: resolve(__dirname, './code/index.html'),
-        profile: resolve(__dirname, './profile/index.html'),
-        problems : resolve(__dirname, './dashboard/problems/index.html'),
-        solutions : resolve(__dirname, './dashboard/solutions/index.html'),
-        users : resolve(__dirname, './dashboard/users/index.html')
-      }
-    }
-  }
+  // server: {
+  //   host: "localhost",
+  //   // port: 8000,
+  //   port: 4173,
+  // },
+  // build: {
+  //   outDir: outDir,
+  //   emptyOutDir: true,
+  //   rollupOptions: {
+  //     input: {
+  //       main: resolve(__dirname, 'index.html'),
+  //       login: resolve(__dirname, './login/index.html'),
+  //       code: resolve(__dirname, './code/index.html'),
+  //       profile: resolve(__dirname, './profile/index.html'),
+  //       problems : resolve(__dirname, './dashboard/problems/index.html'),
+  //       solutions : resolve(__dirname, './dashboard/solutions/index.html'),
+  //       users : resolve(__dirname, './dashboard/users/index.html')
+  //     }
+  //   }
+  // }
   // build: {
   //   outDir: outDir,
   //   emptyOutDir: true,
