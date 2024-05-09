@@ -3,7 +3,7 @@ import axios from "axios";
 import { Table, Navbar, TextInput } from "flowbite-react";
 import { useLoaderData } from "react-router-dom";
 import moment from "moment";
-import { levelHelper } from "../../helpers/helper.js";
+import { levelHelper } from "../helpers/helper.js";
 
 const Home = () => {
   document.title = "Home";

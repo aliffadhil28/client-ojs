@@ -3,7 +3,9 @@ import React, { useContext, useState } from "react";
 import { Sidebar, Button } from "flowbite-react";
 import { HiChartPie } from "react-icons/hi";
 import { FaHome, FaCode , FaDoorOpen ,FaUser} from "react-icons/fa";
+import { FaHome, FaCode , FaDoorOpen ,FaUser} from "react-icons/fa";
 import { sidebarTheme } from "../themes/sidebarTheme.js";
+import { Link } from "react-router-dom";
 import { Link } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -47,7 +49,7 @@ const DashboardLayout = ({ children }) => {
                     : {})}
                   icon={FaCode}
                 >
-                  <Link to="/">Problem</Link>
+                  Problems
                 </Sidebar.Item>
                 <Sidebar.Item
                   {...(curloc === "/dashboard/users"
@@ -55,7 +57,7 @@ const DashboardLayout = ({ children }) => {
                     : {})}
                   icon={FaUser}
                 >
-                  <Link to="/">User</Link>
+                  User
                 </Sidebar.Item>
                 <Sidebar.Item href="#" icon={FaDoorOpen}>
                   <Button size="xs" className="bg-gray-5 w-full justify-start ms-0 hover:bg-gray-50" onClick={logout} color="white">
