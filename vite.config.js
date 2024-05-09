@@ -8,6 +8,7 @@ const outDir = resolve(__dirname,'dist')
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: "client-ojs/",
   plugins: [react()],
   server: {
     host: "127.0.0.1",
@@ -15,7 +16,7 @@ export default defineConfig({
   },
   build: {
     outDir: outDir,
-    emptyOutDir: true, // Add this line
+    emptyOutDir: true,
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
