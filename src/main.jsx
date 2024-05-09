@@ -3,22 +3,22 @@ import ReactDOM from "react-dom/client";
 import $ from "jquery";
 import { navbarTheme } from "./assets/themes/navbarTheme.js";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
-import Code from "./pages/code/Code.jsx";
-import Home from "./pages/home/Home.jsx";
-import Login from "./pages/login/Login.jsx";
+import Code from "../code/Code.jsx";
+import Home from "../home/Home.jsx";
+import Login from "../login/Login.jsx";
 import Register from "./pages/Register.jsx";
-import Problem from "./pages/admin/problems/problem/Problems.jsx";
-import ProblemDetail from "./pages/admin/problems/detail/ProblemDetails.jsx";
-import AddProblem from "./pages/admin/problems/addProblem/AddProblem.jsx";
+import Problem from "../dashboard/problems/Problems.jsx";
+import ProblemDetail from "../dashboard/problems/ProblemDetails.jsx";
+import AddProblem from "../dashboard/problems/AddProblem.jsx";
 import { loaderGet } from "./loaders/loaderGet.js";
 import { loaderParams } from "./loaders/loaderParams.js";
 import "./index.css";
 import { AuthContextProvider } from "./assets/context/AuthContext.jsx";
 import HomeLayout from "./assets/layouts/HomeLayout.jsx";
 import DashboardLayout from "./assets/layouts/DashboardLayout.jsx";
-import Solutions from "./pages/admin/solutions/Solutions.jsx";
-import Profile from "./pages/profile/Profile.jsx";
-import Users from "./pages/admin/users/Users.jsx";
+import Solutions from "../dashboard/solutions/Solutions.jsx";
+import Profile from "../profile/Profile.jsx";
+import Users from "../dashboard/users/Users.jsx";
 import App from "./App.jsx";
 
 function AuthLayout() {
@@ -146,11 +146,11 @@ const router = createBrowserRouter([
     element: <AuthLayout />,
     children: [
       {
-        path: "/login",
+        path: "/login/",
         element: <Login />,
       },
       {
-        path: "/register",
+        path: "/register/",
         element: <Register />,
       },
     ],

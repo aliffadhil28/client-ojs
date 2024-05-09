@@ -4,10 +4,10 @@ import { Table,Button } from "flowbite-react";
 import { AiFillLeftCircle, AiFillRightCircle } from "react-icons/ai";
 import { IconContext } from "react-icons";
 import moment from "moment";
-import { levelHelper } from "../../../../helpers/helper.js";
+import { levelHelper } from "../../src/helpers/helper.js";
 import ReactPaginate from "react-paginate";
-import '../../../../assets/styles/dashboard/problem.css';
-import { buttonThemes } from "../../../../assets/themes/buttonThemes.js";
+import '../../src/assets/styles/dashboard/problem.css';
+import { buttonThemes } from "../../src/assets/themes/buttonThemes.js";
 
 function Problems() {
   document.title = "Problems List";
