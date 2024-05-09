@@ -17,8 +17,8 @@ export default defineConfig({
     port: 4173,
   },
   build: {
-    outDir: outDir,
-    emptyOutDir: true,
+    // outDir: outDir,
+    // emptyOutDir: true,
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
