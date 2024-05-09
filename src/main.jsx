@@ -4,21 +4,21 @@ import $ from "jquery";
 import { navbarTheme } from "./assets/themes/navbarTheme.js";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Code from "./pages/code/Code.jsx";
-import Home from "./pages/Home.jsx";
+import Home from "./pages/home/Home.jsx";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
-import Problem from "./pages/admin/problems/Problems.jsx";
-import ProblemDetail from "./pages/admin/problems/ProblemDetails.jsx";
-import AddProblem from "./pages/admin/problems/AddProblem.jsx";
+import Problem from "./pages/admin/problems/problem/Problems.jsx";
+import ProblemDetail from "./pages/admin/problems/detail/ProblemDetails.jsx";
+import AddProblem from "./pages/admin/problems/addProblem/AddProblem.jsx";
 import { loaderGet } from "./loaders/loaderGet.js";
 import { loaderParams } from "./loaders/loaderParams.js";
 import "./index.css";
 import { AuthContextProvider } from "./assets/context/AuthContext.jsx";
 import HomeLayout from "./assets/layouts/HomeLayout.jsx";
 import DashboardLayout from "./assets/layouts/DashboardLayout.jsx";
-import Solutions from "./pages/admin/Solutions.jsx";
+import Solutions from "./pages/admin/solutions/Solutions.jsx";
 import Profile from "./pages/Profile.jsx";
-import Users from "./pages/admin/Users.jsx";
+import Users from "./pages/admin/users/Users.jsx";
 import App from "./App.jsx";
 
 function AuthLayout() {

@@ -1,10 +1,10 @@
 import React, { useRef, useContext } from "react";
 import um from "../assets/images/um.png";
 import axios from 'axios'
-import "../assets/styles/login.css";
+import "../../assets/styles/login.css";
 import { TextInput, FloatingLabel } from "flowbite-react";
-import { floatLabelThemes } from "../assets/themes/floatLabel.js";
-import AuthContext from "../assets/context/AuthContext.jsx";
+import { floatLabelThemes } from "../../assets/themes/floatLabel.js";
+import AuthContext from "../../assets/context/AuthContext.jsx";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
