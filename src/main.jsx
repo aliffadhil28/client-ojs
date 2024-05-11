@@ -61,7 +61,7 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home />,
         loader: async () => {
-          const data = await loaderGet("http://localhost:8001/problems");
+          const data = await loaderGet("https://ojs-gateway.localgems.my.id/problems");
           if (data == undefined) {
             window.location.href = "/login";
           }
@@ -73,7 +73,7 @@ const router = createBrowserRouter([
         element: <Code />,
         loader: async ({ params }) => {
           let data = await loaderParams(
-            "http://localhost:8001/problems",
+            "https://ojs-gateway.localgems.my.id/problems",
             params.id
           );
           return data;
@@ -86,7 +86,7 @@ const router = createBrowserRouter([
           let userProfile = JSON.parse(localStorage.getItem("userProfile"));
           const id = userProfile.id;
           let data = await loaderParams(
-            "http://localhost:8001/submition/user",
+            "https://ojs-gateway.localgems.my.id/submition/user",
             id
           );
           return data;
@@ -101,7 +101,7 @@ const router = createBrowserRouter([
         path: "/dashboard/problems",
         element: <Problem />,
         loader: async () => {
-          let data = await loaderGet("http://localhost:8001/problems");
+          let data = await loaderGet("https://ojs-gateway.localgems.my.id/problems");
           return data;
         },
       },
@@ -110,7 +110,7 @@ const router = createBrowserRouter([
         element: <ProblemDetail />,
         loader: async ({ params }) => {
           let data = await loaderParams(
-            "http://localhost:8001/problems",
+            "https://ojs-gateway.localgems.my.id/problems",
             params.id
           );
           return data;
@@ -125,7 +125,7 @@ const router = createBrowserRouter([
         element: <Solutions />,
         loader: async ({ params }) => {
           let data = await loaderParams(
-            "http://localhost:8001/submition/solutions",
+            "https://ojs-gateway.localgems.my.id/submition/solutions",
             params.id
           );
           return data;
@@ -135,7 +135,7 @@ const router = createBrowserRouter([
         path: "/dashboard/users",
         element: <Users />,
         loader: async () => {
-          let data = await loaderGet("http://localhost:8001/users");
+          let data = await loaderGet("https://ojs-gateway.localgems.my.id/users");
           return data;
         },
       },

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import ReactPaginate from "react-paginate";
 import { Link, useLoaderData } from "react-router-dom";
 import { Button, Table, Modal, TextInput, Label, Select } from "flowbite-react";
@@ -7,9 +7,11 @@ import { levelHelper } from "../../src/helpers/helper";
 import { IconContext } from "react-icons";
 import { AiFillLeftCircle, AiFillRightCircle } from "react-icons/ai";
 import axios from "axios";
+import AuthContext from "../../src/assets/context/AuthContext";
 
 const Users = () => {
   document.title = "Users List";
+  const { token } = useContext(AuthContext);
   const loader = useLoaderData();
   const data = loader.data;
   const emailAdd = useRef();
@@ -39,8 +41,11 @@ const Users = () => {
     };
 
     axios
-      .post("http://localhost:8001/users", addPayload, {
+      .post("https://ojs-gateway.localgems.my.id/users", addPayload, {
         withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       })
       .then(() => {
         alert("User saved successfully");
@@ -61,8 +66,11 @@ const Users = () => {
     }
 
     await axios
-      .put(`http://localhost:8001/users/${id}`, editPayload, {
+      .put(`https://ojs-gateway.localgems.my.id/users/${id}`, editPayload, {
         withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       })
       .then((response) => {
         console.log(response.data);
@@ -77,7 +85,12 @@ const Users = () => {
 
   function deleteUser(id) {
     axios
-      .delete(`http://localhost:8001/users/${id}`, { withCredentials: true })
+      .delete(`https://ojs-gateway.localgems.my.id/users/${id}`, {
+        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then(() => {
         alert("User deleted Successfully");
       })
@@ -89,7 +102,12 @@ const Users = () => {
 
   const btnEditModal = (id) => {
     axios
-      .get(`http://localhost:8001/users/${id}`, { withCredentials: true })
+      .get(`https://ojs-gateway.localgems.my.id/users/${id}`, {
+        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((response) => {
         const userData = response.data.data;
         setUserIdEdit(userData.id);

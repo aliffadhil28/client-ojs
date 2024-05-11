@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { redirect } from "react-router-dom";
 import { Button, Tooltip } from "flowbite-react";
 import MDEditor from "@uiw/react-md-editor";
@@ -10,11 +10,13 @@ import CodeMirror from "@uiw/react-codemirror";
 import { FaPlus, FaQuestionCircle } from "react-icons/fa";
 import $ from "jquery";
 import axios from "axios";
+import AuthContext from "../../src/assets/context/AuthContext";
 
 const extensions = [StreamLanguage.define(python)];
 
 const AddProblem = () => {
   document.title = "Add Problem";
+  const { token } = useContext(AuthContext);
   const [title, setTitle] = useState();
   const [code, setCode] = useState();
   const [level, setLevel] = useState();
@@ -64,8 +66,11 @@ const AddProblem = () => {
         endDate: endDate,
       };
       await axios
-        .post(`http://localhost:8001/problems`, payload, {
+        .post(`https://ojs-gateway.localgems.my.id/problems`, payload, {
           withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         })
         .then((response) => {
           console.log(response);

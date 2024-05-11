@@ -23,7 +23,7 @@ const extensions = [StreamLanguage.define(python)];
 
 const Code = () => {
   document.title = "Code";
-  const { user } = useContext(AuthContext);
+  const { user, token } = useContext(AuthContext);
   const navigate = useNavigate();
   const loader = useLoaderData();
   const { id } = useParams();
@@ -47,9 +47,15 @@ const Code = () => {
     baseMain: data.baseMain,
     workTime: time,
   };
+  // .post("http://13.215.153.88:8002", payload, { withCredentials: true })
   const submitCode = async () => {
     await axios
-      .post("http://localhost:8001/judge", payload, { withCredentials: true })
+      .post("https://ojs-gateway.localgems.my.id/judge", payload, {
+        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then(async ({ data }) => {
         setResult(data.results);
         setFeedbacks(data.feedBacks);
@@ -71,8 +77,11 @@ const Code = () => {
           success: allTrue,
         };
         await axios
-          .post("http://localhost:8001/submition", submitPayload, {
+          .post("https://ojs-gateway.localgems.my.id/submition", submitPayload, {
             withCredentials: true,
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
           })
           .catch((error) => {
             console.error(error);
