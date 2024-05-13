@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { Table, Navbar, TextInput } from "flowbite-react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, Link } from "react-router-dom";
 import moment from "moment";
 import { levelHelper } from "../helpers/helper.js";
 
@@ -45,12 +45,12 @@ const Home = () => {
                   />
                 </Table.Cell>
                 <Table.Cell>
-                  <a
-                    href={`/solve/${val.id}`}
+                  <Link
+                    to={`/solve/${val.id}`}
                     className="font-medium text-cyan-600 hover:underline dark:text-cyan-500"
                   >
                     Solve
-                  </a>
+                  </Link>
                 </Table.Cell>
               </Table.Row>
             );

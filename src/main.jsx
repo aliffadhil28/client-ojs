@@ -23,125 +23,145 @@ import App from "./App.jsx";
 function AuthLayout() {
   return (
     <AuthContextProvider>
-      <Outlet />
+      <Login />
     </AuthContextProvider>
   );
 }
 
 function DefaultLayout() {
   return (
-      <AuthContextProvider>
-        <HomeLayout>
-          <Outlet />
-        </HomeLayout>
-      </AuthContextProvider>
+    <AuthContextProvider>
+      <HomeLayout>
+        <Outlet />
+      </HomeLayout>
+    </AuthContextProvider>
+  );
+}
+
+function AppLayout() {
+  return (
+    <AuthContextProvider>
+      <App>
+        <Outlet />
+      </App>
+    </AuthContextProvider>
   );
 }
 
 export function AdminLayout() {
   return (
-      <AuthContextProvider>
-        <DashboardLayout>
-          <Outlet />
-        </DashboardLayout>
-      </AuthContextProvider>
+    <AuthContextProvider>
+      <DashboardLayout>
+        <Outlet />
+      </DashboardLayout>
+    </AuthContextProvider>
   );
 }
 const router = createBrowserRouter([
   {
-    element: <DefaultLayout />,
+    element: <AppLayout />,
     children: [
       {
         path: "/",
-        element: <Home />,
-        loader: async () => {
-          const data = await loaderGet("https://ojs-gateway.localgems.my.id/problems");
-          if (data == undefined) {
-            window.location.href = "/login";
-          }
-          return data;
-        },
+        element: <DefaultLayout />,
+        children: [
+          {
+            path: "/",
+            element: <Home />,
+            loader: async () => {
+              const data = await loaderGet(
+                "https://ojs-gateway.localgems.my.id/problems"
+              );
+              if (data === undefined) {
+                window.location.href = "/login";
+              }
+              return data;
+            },
+          },
+          {
+            path: "solve/:id",
+            element: <Code />,
+            loader: async ({ params }) => {
+              const data = await loaderParams(
+                "https://ojs-gateway.localgems.my.id/problems",
+                params.id
+              );
+              return data;
+            },
+          },
+          {
+            path: "profile",
+            element: <Profile />,
+            loader: async () => {
+              const userProfile = JSON.parse(
+                localStorage.getItem("userProfile")
+              );
+              const id = userProfile.id;
+              const data = await loaderParams(
+                "https://ojs-gateway.localgems.my.id/submition/user",
+                id
+              );
+              return data;
+            },
+          },
+        ],
       },
       {
-        path: "/solve/:id",
-        element: <Code />,
-        loader: async ({ params }) => {
-          let data = await loaderParams(
-            "https://ojs-gateway.localgems.my.id/problems",
-            params.id
-          );
-          return data;
-        },
+        path: "/dashboard",
+        element: <AdminLayout />,
+        children: [
+          {
+            path: "problems",
+            element: <Problem />,
+            loader: async () => {
+              const data = await loaderGet(
+                "https://ojs-gateway.localgems.my.id/problems"
+              );
+              return data;
+            },
+          },
+          {
+            path: "problems/:id",
+            element: <ProblemDetail />,
+            loader: async ({ params }) => {
+              const data = await loaderParams(
+                "https://ojs-gateway.localgems.my.id/problems",
+                params.id
+              );
+              return data;
+            },
+          },
+          {
+            path: "problems/add",
+            element: <AddProblem />,
+          },
+          {
+            path: "solutions/:id",
+            element: <Solutions />,
+            loader: async ({ params }) => {
+              const data = await loaderParams(
+                "https://ojs-gateway.localgems.my.id/submition/solutions",
+                params.id
+              );
+              return data;
+            },
+          },
+          {
+            path: "users",
+            element: <Users />,
+            loader: async () => {
+              const data = await loaderGet(
+                "https://ojs-gateway.localgems.my.id/users"
+              );
+              return data;
+            },
+          },
+        ],
       },
       {
-        path: "/profile",
-        element: <Profile />,
-        loader: async () => {
-          let userProfile = JSON.parse(localStorage.getItem("userProfile"));
-          const id = userProfile.id;
-          let data = await loaderParams(
-            "https://ojs-gateway.localgems.my.id/submition/user",
-            id
-          );
-          return data;
-        },
+        path: "/login",
+        element: <AuthLayout />
       },
-    ],
-  },
-  {
-    element: <AdminLayout />,
-    children: [
-      {
-        path: "/dashboard/problems",
-        element: <Problem />,
-        loader: async () => {
-          let data = await loaderGet("https://ojs-gateway.localgems.my.id/problems");
-          return data;
-        },
-      },
-      {
-        path: "/dashboard/problems/:id",
-        element: <ProblemDetail />,
-        loader: async ({ params }) => {
-          let data = await loaderParams(
-            "https://ojs-gateway.localgems.my.id/problems",
-            params.id
-          );
-          return data;
-        },
-      },
-      {
-        path: "/dashboard/problems/add",
-        element: <AddProblem />,
-      },
-      {
-        path: "/dashboard/solutions/:id",
-        element: <Solutions />,
-        loader: async ({ params }) => {
-          let data = await loaderParams(
-            "https://ojs-gateway.localgems.my.id/submition/solutions",
-            params.id
-          );
-          return data;
-        },
-      },
-      {
-        path: "/dashboard/users",
-        element: <Users />,
-        loader: async () => {
-          let data = await loaderGet("https://ojs-gateway.localgems.my.id/users");
-          return data;
-        },
-      },
-    ],
-  },
-  {
-    element: <AuthLayout />,
-    children: [
-      {
-        path: "/login/",
-        element: <Login />,
-      }
     ],
   },
 ]);
