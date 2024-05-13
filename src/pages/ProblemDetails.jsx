@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
-import { redirect } from "react-router-dom";
-import { Button, Tooltip } from "flowbite-react";
+import { useLoaderData, useParams } from "react-router-dom";
+import { Button } from "flowbite-react";
 import MDEditor from "@uiw/react-md-editor";
+import rehypeSanitize from "rehype-sanitize";
 import moment from "moment";
 import { vscodeDark } from "@uiw/codemirror-theme-vscode";
 import { python } from "@codemirror/legacy-modes/mode/python";
@@ -10,44 +11,63 @@ import CodeMirror from "@uiw/react-codemirror";
 import { FaPlus, FaQuestionCircle } from "react-icons/fa";
 import $ from "jquery";
 import axios from "axios";
-import AuthContext from "../../src/assets/context/AuthContext";
+import { Tooltip } from "flowbite-react";
+import AuthContext from "../assets/context/AuthContext";
 
 const extensions = [StreamLanguage.define(python)];
 
-const AddProblem = () => {
-  document.title = "Add Problem";
+const ProblemDetails = () => {
+  document.title = "Problem Detail";
   const { token } = useContext(AuthContext);
-  const [title, setTitle] = useState();
-  const [code, setCode] = useState();
-  const [level, setLevel] = useState();
-  const [description, setDescription] = useState();
-  const [testCases, setTestCases] = useState([]);
-  const [workTime, setWorkTime] = useState();
-  const [hour, setHour] = useState(0);
-  const [minute, setMinute] = useState(0);
+  const loader = useLoaderData();
+  const data = loader.data;
+  const { id } = useParams();
+  const [title, setTitle] = useState(data.title);
+  const [code, setCode] = useState(data.code);
+  const [level, setLevel] = useState(data.level);
+  const [description, setDescription] = useState(data.description);
+  const [testCases, setTestCases] = useState(data.testCases);
+  const [workTime, setWorkTime] = useState(data.workTime);
+  const [hour, setHour] = useState(workTime.hours);
+  const [minute, setMinute] = useState(workTime.minute);
   const [startDate, setStartDate] = useState(
-    moment().format("YYYY-MM-DDTHH:mm")
+    moment(data.startDate).format("YYYY-MM-DDTHH:mm")
   );
-  const [endDate, setEndDate] = useState(moment().format("YYYY-MM-DDTHH:mm"));
-  const [baseImport, setBaseImport] = useState();
-  const [baseFunction, setBaseFunction] = useState();
-  const [baseMain, setBaseMain] = useState();
+  const [endDate, setEndDate] = useState(
+    moment(data.endDate).format("YYYY-MM-DDTHH:mm")
+  );
+  const [baseImport, setBaseImport] = useState(data.baseImport);
+  const [baseFunction, setBaseFunction] = useState(data.baseFunction);
+  const [baseMain, setBaseMain] = useState(data.baseMain);
+  const [isEditing, setIsEditing] = useState(false);
+  $("input").attr("readonly", !isEditing);
+  $(".w-md-editor-text-input").attr("readonly", !isEditing);
+  $(".cm-content").attr("aria-readonly", !isEditing);
+  $("#btn-addTest").attr("disabled", !isEditing);
   useEffect(() => {
-    setTestCases(testCases);
+    setTestCases(data.testCases);
     setWorkTime({
       hours: hour,
       minutes: minute,
     });
-  }, [testCases, hour, minute]);
+  }, [data.testCases, hour, minute]);
 
   const addTestCaseInput = () => {
     setTestCases([...testCases, ""]);
+    console.log(testCases);
   };
 
   const handleTestCaseChange = (index, value) => {
     const updatedTestCases = [...testCases];
     updatedTestCases[index] = value;
     setTestCases(updatedTestCases);
+  };
+  const handleEditClick = () => {
+    $("input").attr("readonly", isEditing);
+    $(".w-md-editor-text-input").attr("readonly", isEditing);
+    $("#btn-addTest").attr("disabled", isEditing);
+    $(".cm-content").attr("aria-readonly", !isEditing);
+    setIsEditing(!isEditing);
   };
 
   const handleSubmit = async () => {
@@ -66,7 +86,7 @@ const AddProblem = () => {
         endDate: endDate,
       };
       await axios
-        .post(`https://ojs-gateway.localgems.my.id/problems`, payload, {
+        .put(`https://ojs-gateway.localgems.my.id/problems/${id}`, payload,{
           withCredentials: true,
           headers: {
             Authorization: `Bearer ${token}`,
@@ -74,7 +94,6 @@ const AddProblem = () => {
         })
         .then((response) => {
           console.log(response);
-          redirect("/dashboard/problems");
         })
         .catch((err) => {
           console.log(err);
@@ -82,18 +101,56 @@ const AddProblem = () => {
     } catch (error) {
       return error;
     }
+    setIsEditing(false);
+  };
+
+  const handleCancel = () => {
+    // Reset form data
+    $("input").attr("readonly", !isEditing);
+    $(".w-md-editor-text-input").attr("readonly", !isEditing);
+    $("#btn-addTest").attr("disabled", !isEditing);
+    $(".cm-content").attr("aria-readonly", !isEditing);
+    setTitle(data.title);
+    setCode(data.code);
+    setLevel(data.level);
+    setDescription(data.description);
+    setTestCases(data.testCases);
+    setWorkTime(data.workTime);
+    setStartDate(moment(data.startDate).format("YYYY-MM-DDTHH:mm"));
+    setEndDate(moment(data.endDate).format("YYYY-MM-DDTHH:mm"));
+    setBaseImport(data.baseImport);
+    setBaseFunction(data.baseFunction);
+    setBaseMain(data.baseMain);
+    setIsEditing(false);
   };
   return (
     <div>
       <div className="header my-4 flex justify-between">
-        <h1 className="font-semibold text-xl">Add problem</h1>
+        <h1 className="font-semibold text-xl">Problem Details</h1>
         <div className="buttons">
-          <button
-            className="bg-blue-500 text-white px-3 py-1 rounded"
-            onClick={handleSubmit}
-          >
-            Submit
-          </button>
+          {isEditing ? (
+            <div>
+              <button
+                className="bg-red-500 text-white px-3 py-1 rounded mr-2"
+                onClick={handleCancel}
+              >
+                Cancel
+              </button>
+              <button
+                className="bg-blue-500 text-white px-3 py-1 rounded"
+                onClick={handleSubmit}
+              >
+                Submit
+              </button>
+            </div>
+          ) : (
+            <button
+              className="bg-green-500 text-white px-3 py-1 rounded"
+              onClick={handleEditClick}
+            >
+              Edit
+            </button>
+          )}
         </div>
       </div>
       <div className="container bg-slate-100 shadow-lg rounded-lg p-3">
@@ -299,6 +356,9 @@ const AddProblem = () => {
                   onChange={(editor, change) => {
                     setBaseFunction(editor);
                   }}
+                  previewOptions={{
+                    rehypePlugins: [[rehypeSanitize]],
+                  }}
                 />
               </div>
             </div>
@@ -326,6 +386,9 @@ const AddProblem = () => {
                     extensions={extensions}
                     onChange={(editor, change) => {
                       setBaseImport(editor);
+                    }}
+                    previewOptions={{
+                      rehypePlugins: [[rehypeSanitize]],
                     }}
                   />
                 </div>
@@ -362,6 +425,9 @@ const AddProblem = () => {
                     onChange={(editor, change) => {
                       setBaseMain(editor);
                     }}
+                    previewOptions={{
+                      rehypePlugins: [[rehypeSanitize]],
+                    }}
                   />
                 </div>
               </div>
@@ -373,4 +439,4 @@ const AddProblem = () => {
   );
 };
 
-export default AddProblem;
+export default ProblemDetails;

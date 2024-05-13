@@ -2,12 +2,12 @@ import React, { useState, useEffect, useRef, useContext } from "react";
 import ReactPaginate from "react-paginate";
 import { Link, useLoaderData } from "react-router-dom";
 import { Button, Table, Modal, TextInput, Label, Select } from "flowbite-react";
-import { buttonThemes } from "../../src/assets/themes/buttonThemes";
-import { levelHelper } from "../../src/helpers/helper";
+import { buttonThemes } from "../assets/themes/buttonThemes";
+import { levelHelper } from "../helpers/helper";
 import { IconContext } from "react-icons";
 import { AiFillLeftCircle, AiFillRightCircle } from "react-icons/ai";
 import axios from "axios";
-import AuthContext from "../../src/assets/context/AuthContext";
+import AuthContext from "../assets/context/AuthContext";
 
 const Users = () => {
   document.title = "Users List";

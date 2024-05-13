@@ -1,10 +1,10 @@
 import React, { useState, useContext } from "react";
 import { useLoaderData, useParams, useNavigate } from "react-router-dom";
-import AuthContext from "../src/assets/context/AuthContext.jsx";
+import AuthContext from "../assets/context/AuthContext.jsx";
 import CodeMirror from "@uiw/react-codemirror";
 import MDEditor from "@uiw/react-md-editor";
 import { Tabs, Table } from "flowbite-react";
-import Timer from "../src/assets/components/TImer.jsx";
+import Timer from "../assets/components/TImer.jsx";
 import axios from "axios";
 import { Tooltip } from "react-tooltip";
 import { vscodeDark } from "@uiw/codemirror-theme-vscode";
@@ -15,8 +15,8 @@ import {
   levelHelper,
   handleContextmenu,
   parseElement,
-} from "../src/helpers/helper.js";
-import "../src/assets/styles/code.css";
+} from "../helpers/helper.js";
+import "../assets/styles/code.css";
 import $ from "jquery";
 
 const extensions = [StreamLanguage.define(python)];

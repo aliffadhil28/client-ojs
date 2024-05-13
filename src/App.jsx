@@ -12,15 +12,15 @@ import {
 import { AuthContextProvider } from "./assets/context/AuthContext";
 import HomeLayout from "./assets/layouts/HomeLayout";
 import DashboardLayout from "./assets/layouts/DashboardLayout";
-import Home from "../home/Home";
-import Code from "../code/Code";
-import Login from "../login/Login";
-import Profile from "../profile/Profile";
-import Problems from "../dashboard/problems/Problems";
-import AddProblem from "../dashboard/problems/AddProblem";
-import ProblemDetails from "../dashboard/problems/ProblemDetails";
-import Solutions from "../dashboard/solutions/Solutions";
-import Users from "../dashboard/users/Users";
+import Home from "./pages/Home";
+import Code from "./pages/Code";
+import Login from "./pages/Login";
+import Profile from "./pages/Profile";
+import Problems from "./pages/Problems";
+import AddProblem from "./pages/AddProblem";
+import ProblemDetails from "./pages/ProblemDetails";
+import Solutions from "./pages/Solutions";
+import Users from "./pages/Users";
 import { loaderGet } from "./loaders/loaderGet";
 import { loaderParams } from "./loaders/loaderParams";
 
