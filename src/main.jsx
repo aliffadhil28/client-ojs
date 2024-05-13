@@ -20,23 +20,31 @@ import Profile from "../profile/Profile.jsx";
 import Users from "../dashboard/users/Users.jsx";
 import App from "./App.jsx";
 
-function DefaultLayout() {
+function AuthLayout() {
   return (
     <AuthContextProvider>
-      <HomeLayout>
-        <Outlet />
-      </HomeLayout>
+      <Outlet />
     </AuthContextProvider>
+  );
+}
+
+function DefaultLayout() {
+  return (
+      <AuthContextProvider>
+        <HomeLayout>
+          <Outlet />
+        </HomeLayout>
+      </AuthContextProvider>
   );
 }
 
 export function AdminLayout() {
   return (
-    <AuthContextProvider>
-      <DashboardLayout>
-        <Outlet />
-      </DashboardLayout>
-    </AuthContextProvider>
+      <AuthContextProvider>
+        <DashboardLayout>
+          <Outlet />
+        </DashboardLayout>
+      </AuthContextProvider>
   );
 }
 const router = createBrowserRouter([
@@ -47,9 +55,7 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home />,
         loader: async () => {
-          const data = await loaderGet(
-            "https://ojs-gateway.localgems.my.id/problems"
-          );
+          const data = await loaderGet("https://ojs-gateway.localgems.my.id/problems");
           if (data == undefined) {
             window.location.href = "/login";
           }
@@ -89,9 +95,7 @@ const router = createBrowserRouter([
         path: "/dashboard/problems",
         element: <Problem />,
         loader: async () => {
-          let data = await loaderGet(
-            "https://ojs-gateway.localgems.my.id/problems"
-          );
+          let data = await loaderGet("https://ojs-gateway.localgems.my.id/problems");
           return data;
         },
       },
@@ -125,17 +129,20 @@ const router = createBrowserRouter([
         path: "/dashboard/users",
         element: <Users />,
         loader: async () => {
-          let data = await loaderGet(
-            "https://ojs-gateway.localgems.my.id/users"
-          );
+          let data = await loaderGet("https://ojs-gateway.localgems.my.id/users");
           return data;
         },
       },
     ],
   },
   {
-    path: "/login/",
-    element: <Login />,
+    element: <AuthLayout />,
+    children: [
+      {
+        path: "/login/",
+        element: <Login />,
+      }
+    ],
   },
 ]);
 
