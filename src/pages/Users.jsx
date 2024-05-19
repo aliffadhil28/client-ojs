@@ -41,7 +41,7 @@ const Users = () => {
     };
 
     axios
-      .post("https://ojs-gateway.localgems.my.id/users", addPayload, {
+      .post("http://13.215.153.88:8001/users", addPayload, {
         withCredentials: true,
         headers: {
           Authorization: `Bearer ${token}`,
@@ -66,7 +66,7 @@ const Users = () => {
     }
 
     await axios
-      .put(`https://ojs-gateway.localgems.my.id/users/${id}`, editPayload, {
+      .put(`http://13.215.153.88:8001/users/${id}`, editPayload, {
         withCredentials: true,
         headers: {
           Authorization: `Bearer ${token}`,
@@ -85,7 +85,7 @@ const Users = () => {
 
   function deleteUser(id) {
     axios
-      .delete(`https://ojs-gateway.localgems.my.id/users/${id}`, {
+      .delete(`http://13.215.153.88:8001/users/${id}`, {
         withCredentials: true,
         headers: {
           Authorization: `Bearer ${token}`,
@@ -102,7 +102,7 @@ const Users = () => {
 
   const btnEditModal = (id) => {
     axios
-      .get(`https://ojs-gateway.localgems.my.id/users/${id}`, {
+      .get(`http://13.215.153.88:8001/users/${id}`, {
         withCredentials: true,
         headers: {
           Authorization: `Bearer ${token}`,

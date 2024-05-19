@@ -20,7 +20,7 @@ import Profile from "./pages/Profile.jsx";
 import Users from "./pages/Users.jsx";
 import App from "./App.jsx";
 
-function AuthLayout() {
+export function AuthLayout() {
   return (
     <AuthContextProvider>
       <Login />
@@ -28,7 +28,7 @@ function AuthLayout() {
   );
 }
 
-function DefaultLayout() {
+export function DefaultLayout() {
   return (
     <AuthContextProvider>
       <HomeLayout>
@@ -38,7 +38,7 @@ function DefaultLayout() {
   );
 }
 
-function AppLayout() {
+export function AppLayout() {
   return (
     <AuthContextProvider>
       <App>
@@ -70,7 +70,7 @@ const router = createBrowserRouter([
             element: <Home />,
             loader: async () => {
               const data = await loaderGet(
-                "https://ojs-gateway.localgems.my.id/problems"
+                "http://13.215.153.88:8001/problems"
               );
               if (data === undefined) {
                 window.location.href = "/login";
@@ -83,7 +83,7 @@ const router = createBrowserRouter([
             element: <Code />,
             loader: async ({ params }) => {
               const data = await loaderParams(
-                "https://ojs-gateway.localgems.my.id/problems",
+                "http://13.215.153.88:8001/problems",
                 params.id
               );
               return data;
@@ -98,7 +98,7 @@ const router = createBrowserRouter([
               );
               const id = userProfile.id;
               const data = await loaderParams(
-                "https://ojs-gateway.localgems.my.id/submition/user",
+                "http://13.215.153.88:8001/submition/user",
                 id
               );
               return data;
@@ -115,7 +115,7 @@ const router = createBrowserRouter([
             element: <Problem />,
             loader: async () => {
               const data = await loaderGet(
-                "https://ojs-gateway.localgems.my.id/problems"
+                "http://13.215.153.88:8001/problems"
               );
               return data;
             },
@@ -125,7 +125,7 @@ const router = createBrowserRouter([
             element: <ProblemDetail />,
             loader: async ({ params }) => {
               const data = await loaderParams(
-                "https://ojs-gateway.localgems.my.id/problems",
+                "http://13.215.153.88:8001/problems",
                 params.id
               );
               return data;
@@ -140,7 +140,7 @@ const router = createBrowserRouter([
             element: <Solutions />,
             loader: async ({ params }) => {
               const data = await loaderParams(
-                "https://ojs-gateway.localgems.my.id/submition/solutions",
+                "http://13.215.153.88:8001/submition/solutions",
                 params.id
               );
               return data;
@@ -151,7 +151,7 @@ const router = createBrowserRouter([
             element: <Users />,
             loader: async () => {
               const data = await loaderGet(
-                "https://ojs-gateway.localgems.my.id/users"
+                "http://13.215.153.88:8001/users"
               );
               return data;
             },

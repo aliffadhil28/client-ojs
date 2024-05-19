@@ -1,21 +1,29 @@
 /* eslint-disable no-undef */
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import { resolve } from 'path'
-import { root } from 'postcss'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import { resolve } from "path";
+import { root } from "postcss";
 
-const outDir = resolve(__dirname,'dist')
+const outDir = resolve(__dirname, "dist");
 
 // https://vitejs.dev/config/
 export default defineConfig({
   base: "/",
   // base: "/client-ojs/",
   plugins: [react()],
+  test: {
+    globals: true,
+    environment: "jsdom",
+    setupFiles: "./src/test/setup.ts",
+    coverage: {
+      reporter: ["text", "json", "html"],
+    },
+  },
   server: {
-    host: "localhost",
+    host: "127.0.0.1",
     // port: 8000,
     port: 4173,
-  }
+  },
   // build: {
   //   outDir: outDir,
   //   emptyOutDir: true,
@@ -48,4 +56,3 @@ export default defineConfig({
   //   }
   // }
 });
-
