@@ -109,7 +109,7 @@ describe("App Router", () => {
   });
 
   it("renders Code component at solve/:id path", async () => {
-    render(<RouterProvider router={router} initialEntries={["/solve/1"]} />);
+    render(<RouterProvider router={router} initialEntries={["/solve/b1fc3f7c-22e2-4746-b533-2756770e4eec"]} />);
     expect(await screen.findByText(/Code/i)).toBeInTheDocument();
   });
 
@@ -132,7 +132,7 @@ describe("App Router", () => {
     render(
       <RouterProvider
         router={router}
-        initialEntries={["/dashboard/problems/1"]}
+        initialEntries={["/dashboard/problems/b1fc3f7c-22e2-4746-b533-2756770e4eec"]}
       />
     );
     expect(await screen.findByText(/ProblemDetail/i)).toBeInTheDocument();
@@ -152,7 +152,7 @@ describe("App Router", () => {
     render(
       <RouterProvider
         router={router}
-        initialEntries={["/dashboard/solutions/1"]}
+        initialEntries={["/dashboard/solutions/b1fc3f7c-22e2-4746-b533-2756770e4eec"]}
       />
     );
     expect(await screen.findByText(/Solutions/i)).toBeInTheDocument();
