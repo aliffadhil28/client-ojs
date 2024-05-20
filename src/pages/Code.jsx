@@ -50,7 +50,7 @@ const Code = () => {
   // .post("http://13.215.153.88:8002", payload, { withCredentials: true })
   const submitCode = async () => {
     await axios
-      .post("https://ojs-gateway.localgemy.my.id/judge", payload, {
+      .post("https://ojs-gateway.localgems.my.id/judge", payload, {
         withCredentials: true,
         headers: {
           Authorization: `Bearer ${token}`,
@@ -77,7 +77,7 @@ const Code = () => {
           success: allTrue,
         };
         await axios
-          .post("https://ojs-gateway.localgemy.my.id/submition", submitPayload, {
+          .post("https://ojs-gateway.localgems.my.id/submition", submitPayload, {
             withCredentials: true,
             headers: {
               Authorization: `Bearer ${token}`,

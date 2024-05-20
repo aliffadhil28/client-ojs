@@ -16,26 +16,26 @@ import Users from "../pages/Users.jsx"; // Pastikan path ini benar
 import { AppLayout, AuthLayout, DefaultLayout, AdminLayout } from "../main.jsx";
 
 const server = setupServer(
-  rest.get("https://ojs-gateway.localgemy.my.id/problems", (req, res, ctx) => {
+  rest.get("https://ojs-gateway.localgems.my.id/problems", (req, res, ctx) => {
     return res(ctx.json([]));
   }),
   rest.get(
-    "https://ojs-gateway.localgemy.my.id/problems/:id",
+    "https://ojs-gateway.localgems.my.id/problems/:id",
     (req, res, ctx) => {
       return res(ctx.json({}));
     }
   ),
   rest.get(
-    "https://ojs-gateway.localgemy.my.id/submition/user/:id",
+    "https://ojs-gateway.localgems.my.id/submition/user/:id",
     (req, res, ctx) => {
       return res(ctx.json({}));
     }
   ),
-  rest.get("https://ojs-gateway.localgemy.my.id/users", (req, res, ctx) => {
+  rest.get("https://ojs-gateway.localgems.my.id/users", (req, res, ctx) => {
     return res(ctx.json([]));
   }),
   rest.get(
-    "https://ojs-gateway.localgemy.my.id/submition/solutions/:id",
+    "https://ojs-gateway.localgems.my.id/submition/solutions/:id",
     (req, res, ctx) => {
       return res(ctx.json([]));
     }

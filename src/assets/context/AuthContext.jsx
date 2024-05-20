@@ -25,7 +25,7 @@ export const AuthContextProvider = ({ children }) => {
   const login = async (payload) => {
     // axios.defaults.headers.post['Content-Type'] ='application/json';
     let profile = await axios.post(
-      "https://ojs-gateway.localgemy.my.id/auth/login",
+      "https://ojs-gateway.localgems.my.id/auth/login",
       payload,
       {
         withCredentials: true,
@@ -42,7 +42,7 @@ export const AuthContextProvider = ({ children }) => {
   };
   const refresh = async (payload) => {
     let profile = await axios.post(
-      "https://ojs-gateway.localgemy.my.id/auth/refresh-token",
+      "https://ojs-gateway.localgems.my.id/auth/refresh-token",
       payload,
       {
         withCredentials: true,
