@@ -70,7 +70,7 @@ const router = createBrowserRouter([
             element: <Home />,
             loader: async () => {
               const data = await loaderGet(
-                "http://13.215.153.88:8001/problems"
+                "https://ojs-gateway.localgemy.my.id/problems"
               );
               if (data === undefined) {
                 window.location.href = "/login";
@@ -83,7 +83,7 @@ const router = createBrowserRouter([
             element: <Code />,
             loader: async ({ params }) => {
               const data = await loaderParams(
-                "http://13.215.153.88:8001/problems",
+                "https://ojs-gateway.localgemy.my.id/problems",
                 params.id
               );
               return data;
@@ -98,7 +98,7 @@ const router = createBrowserRouter([
               );
               const id = userProfile.id;
               const data = await loaderParams(
-                "http://13.215.153.88:8001/submition/user",
+                "https://ojs-gateway.localgemy.my.id/submition/user",
                 id
               );
               return data;
@@ -115,7 +115,7 @@ const router = createBrowserRouter([
             element: <Problem />,
             loader: async () => {
               const data = await loaderGet(
-                "http://13.215.153.88:8001/problems"
+                "https://ojs-gateway.localgemy.my.id/problems"
               );
               return data;
             },
@@ -125,7 +125,7 @@ const router = createBrowserRouter([
             element: <ProblemDetail />,
             loader: async ({ params }) => {
               const data = await loaderParams(
-                "http://13.215.153.88:8001/problems",
+                "https://ojs-gateway.localgemy.my.id/problems",
                 params.id
               );
               return data;
@@ -140,7 +140,7 @@ const router = createBrowserRouter([
             element: <Solutions />,
             loader: async ({ params }) => {
               const data = await loaderParams(
-                "http://13.215.153.88:8001/submition/solutions",
+                "https://ojs-gateway.localgemy.my.id/submition/solutions",
                 params.id
               );
               return data;
@@ -151,7 +151,7 @@ const router = createBrowserRouter([
             element: <Users />,
             loader: async () => {
               const data = await loaderGet(
-                "http://13.215.153.88:8001/users"
+                "https://ojs-gateway.localgemy.my.id/users"
               );
               return data;
             },

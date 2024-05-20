@@ -16,26 +16,26 @@ import Users from "../pages/Users.jsx"; // Pastikan path ini benar
 import { AppLayout, AuthLayout, DefaultLayout, AdminLayout } from "../main.jsx";
 
 const server = setupServer(
-  rest.get("http://13.215.153.88:8001/problems", (req, res, ctx) => {
+  rest.get("https://ojs-gateway.localgemy.my.id/problems", (req, res, ctx) => {
     return res(ctx.json([]));
   }),
   rest.get(
-    "http://13.215.153.88:8001/problems/:id",
+    "https://ojs-gateway.localgemy.my.id/problems/:id",
     (req, res, ctx) => {
       return res(ctx.json({}));
     }
   ),
   rest.get(
-    "http://13.215.153.88:8001/submition/user/:id",
+    "https://ojs-gateway.localgemy.my.id/submition/user/:id",
     (req, res, ctx) => {
       return res(ctx.json({}));
     }
   ),
-  rest.get("http://13.215.153.88:8001/users", (req, res, ctx) => {
+  rest.get("https://ojs-gateway.localgemy.my.id/users", (req, res, ctx) => {
     return res(ctx.json([]));
   }),
   rest.get(
-    "http://13.215.153.88:8001/submition/solutions/:id",
+    "https://ojs-gateway.localgemy.my.id/submition/solutions/:id",
     (req, res, ctx) => {
       return res(ctx.json([]));
     }

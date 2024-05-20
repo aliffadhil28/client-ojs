@@ -86,7 +86,7 @@ const ProblemDetails = () => {
         endDate: endDate,
       };
       await axios
-        .put(`http://13.215.153.88:8001/problems/${id}`, payload,{
+        .put(`https://ojs-gateway.localgemy.my.id/problems/${id}`, payload,{
           withCredentials: true,
           headers: {
             Authorization: `Bearer ${token}`,
